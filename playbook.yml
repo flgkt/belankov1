@@ -1,0 +1,21 @@
+---
+- hosts: "all"
+  become: true 
+  tasks:
+    - name: "update"
+      command: apt-get update 
+
+    - name: "curl"
+      apt: pkg=curl state=latest update_cache=true
+
+    - name: "ufw"
+      service: name=ufw state=started
+
+    - name: "nginx"
+      apt: pkg=nginx state=latest update_cache=true
+     
+    - name: "docker"
+      apt: pkg=docker state=latest update_cache=true
+ 
+    - name: "reboot"
+      reboot:    
